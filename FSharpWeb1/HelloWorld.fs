@@ -14,11 +14,11 @@ open System.Web
 type HelloWorld() =
   static member Handler(ctx:HttpContext) =
     ctx.Response.ContentType <- "text/html"
-    ctx.Response.Write("<b>I love F# OMG!</b>")
+    ctx.Response.Write("<b>I love <a href='http://fsharp.org/' target='_blank'>F#</a> OMG!</b>")
 
 type HelloWorldAsyncIHttpHandler() =
-  let handler = new Action<HttpContext>(HelloWorld.Handler)
-  
+  static let handler = new Action<HttpContext>(HelloWorld.Handler)
+
   interface IHttpAsyncHandler with
     member this.IsReusable 
       with get() = true
